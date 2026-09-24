@@ -12,7 +12,7 @@ export const photos = {
   dig: "https://mtadtabmwahpxmpquovg.supabase.co/storage/v1/object/public/stroyo/stroyo%20bagger%20and%20dumper%20rental.jpg",
   height: "https://mtadtabmwahpxmpquovg.supabase.co/storage/v1/object/public/stroyo/stroyo%20working%20on%20height.jpg",
   move: "https://mtadtabmwahpxmpquovg.supabase.co/storage/v1/object/public/stroyo/moving%20equipment%20for%20rent.jpg",
-  tools: "https://mtadtabmwahpxmpquovg.supabase.co/storage/v1/object/public/stroyo/stroyo%20garden%20tools%20for%20rent.jpg",
+  tools: "https://mtadtabmwahpxmpquovg.supabase.co/storage/v1/object/public/stroyo/stroyo%20tools%20for%20rent.jpg",
   listing: "https://mtadtabmwahpxmpquovg.supabase.co/storage/v1/object/public/stroyo/Eliet%20Maestro.jpg",
 } as const;
 
@@ -304,7 +304,7 @@ export const copy: Record<Locale, Copy> = {
     ownerEyebrow: "Máte vlastní techniku?",
     ownerTitle: "Nenechte své stroje zbytečně stát.",
     ownerLead:
-      "Máte štěpkovač, který používáte jen párkrát do měsíce? Minibagr mezi zakázkami? Nářadí, které většinu času leží v dílně? Nabídněte svou techniku na Stroyo a oslovte lidi ve svém okolí, kteří si ji chtějí pronajmout nebo koupit.",
+      "Máte štěpkovač, který téměř nepoužíváte, minibagr, který mezi zakázkami stojí ladem, nebo nářadí, na které se jen práší? Dejte své technice práci – nabídněte ji na Stroyo k pronájmu nebo prodeji lidem ve vašem okolí.",
     ownerCta: "Nabídnout techniku",
     audiences: ["Soukromí majitelé", "Řemeslníci", "Půjčovny", "Prodejci"],
     notifyTitle: "Jedno místo pro techniku.",
@@ -416,7 +416,7 @@ export const copy: Record<Locale, Copy> = {
     ownerEyebrow: "Own equipment?",
     ownerTitle: "Your machine shouldn’t be sitting idle.",
     ownerLead:
-      "Have a chipper you use twice a month? A mini excavator between projects? Tools collecting dust? List them on Stroyo and reach people nearby looking to rent or buy.",
+      "Got a chipper you rarely use, a mini excavator sitting idle between jobs, or tools collecting dust? Put your equipment to work by listing it on Stroyo for people nearby to rent or buy.",
     ownerCta: "List equipment",
     audiences: ["Private owners", "Tradespeople", "Rental companies", "Dealers"],
     notifyTitle: "One place for the machine.",
