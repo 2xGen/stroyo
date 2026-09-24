@@ -31,24 +31,43 @@ export async function joinWaitlist(
     return { status: "error", code: "invalid" };
   }
 
-  const payload = {
+  const blank = (value: string) => value || null;
+  const row = {
     email,
     locale,
     intent,
     context,
-    query: clip(formData.get("query"), 120),
-    category: clip(formData.get("category"), 40),
-    location: clip(formData.get("location"), 80),
-    timing: ["week", "month", "browse"].includes(timingRaw) ? timingRaw : "",
-    offer: ["rent", "sell", "both"].includes(offerRaw) ? offerRaw : "",
+    query: blank(clip(formData.get("query"), 120)),
+    category: blank(clip(formData.get("category"), 40)),
+    location: blank(clip(formData.get("location"), 80)),
+    timing: ["week", "month", "browse"].includes(timingRaw) ? timingRaw : null,
+    offer: ["rent", "sell", "both"].includes(offerRaw) ? offerRaw : null,
     source: "stroyo.cz",
-    createdAt: new Date().toISOString(),
   };
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SECRET_KEY;
   const webhook = process.env.WAITLIST_WEBHOOK_URL;
 
   try {
-    if (webhook) {
+    if (supabaseUrl && supabaseKey) {
+      const response = await fetch(`${supabaseUrl}/rest/v1/signups`, {
+        method: "POST",
+        headers: {
+          apikey: supabaseKey,
+          authorization: `Bearer ${supabaseKey}`,
+          "content-type": "application/json",
+          prefer: "return=minimal",
+        },
+        body: JSON.stringify(row),
+        signal: AbortSignal.timeout(8000),
+      });
+
+      if (!response.ok) {
+        console.error("signup insert failed", response.status);
+        return { status: "error", code: "unavailable" };
+      }
+    } else if (webhook) {
       if (!webhook.startsWith("https://")) {
         return { status: "error", code: "unavailable" };
       }
@@ -56,7 +75,7 @@ export async function joinWaitlist(
       const response = await fetch(webhook, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ ...row, createdAt: new Date().toISOString() }),
         signal: AbortSignal.timeout(8000),
       });
 
@@ -64,7 +83,7 @@ export async function joinWaitlist(
         return { status: "error", code: "unavailable" };
       }
     } else {
-      console.info(JSON.stringify({ waitlist: payload }));
+      console.info(JSON.stringify({ waitlist: row }));
     }
   } catch (error) {
     console.error("waitlist failed", error);

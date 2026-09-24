@@ -5,7 +5,9 @@ import { CategoryBoard } from "@/components/category-board";
 import { DemoInterest } from "@/components/demo-interest";
 import { EquipmentSearch } from "@/components/equipment-search";
 import { LeadForm } from "@/components/lead-form";
+import { CookieSettingsButton } from "@/components/cookie-consent";
 import { Logo } from "@/components/logo";
+import { legal } from "@/lib/legal";
 import { contactEmail, copy, photos, siteUrl, type Locale } from "@/lib/content";
 
 const btn = "inline-flex items-center justify-center px-5 py-3 text-sm font-bold tracking-[0.04em] uppercase";
@@ -208,6 +210,12 @@ export function Landing({ locale }: { locale: Locale }) {
           <div>
             <p className="text-lg font-black tracking-tight">STROYO.CZ</p>
             <p className="mt-1 font-bold">{t.footerLine}</p>
+          </div>
+          <div className="flex flex-col gap-2 sm:items-end">
+            <a href={legal[locale].privacyHref} className="text-sm font-bold hover:text-orange">
+              {legal[locale].privacyLabel}
+            </a>
+            <CookieSettingsButton locale={locale} className="cursor-pointer text-left text-sm font-bold hover:text-orange sm:text-right" />
           </div>
           <a href={`mailto:${contactEmail}`} className="text-sm font-bold hover:text-orange">
             {contactEmail}

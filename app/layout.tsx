@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
 import { headers } from "next/headers";
+import { Analytics } from "@vercel/analytics/next";
+import { CookieConsent } from "@/components/cookie-consent";
 import "./globals.css";
 
 const sans = Archivo({
@@ -35,7 +37,11 @@ export default async function RootLayout({
 
   return (
     <html lang={lang} className={`${sans.variable} h-full antialiased`}>
-      <body className="min-h-full bg-paper font-sans text-ink">{children}</body>
+      <body className="min-h-full bg-paper font-sans text-ink">
+        {children}
+        <CookieConsent locale={lang} />
+        <Analytics />
+      </body>
     </html>
   );
 }

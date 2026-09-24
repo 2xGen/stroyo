@@ -11,5 +11,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: siteUrl, lastModified, alternates: { languages } },
     { url: `${siteUrl}/en`, lastModified, alternates: { languages } },
+    {
+      url: `${siteUrl}/ochrana-osobnich-udaju`,
+      lastModified,
+      alternates: { languages: { cs: `${siteUrl}/ochrana-osobnich-udaju`, en: `${siteUrl}/en/privacy` } },
+    },
+    {
+      url: `${siteUrl}/en/privacy`,
+      lastModified,
+      alternates: { languages: { cs: `${siteUrl}/ochrana-osobnich-udaju`, en: `${siteUrl}/en/privacy` } },
+    },
   ];
 }
