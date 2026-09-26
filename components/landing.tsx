@@ -1,12 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import { BenefitCards } from "@/components/benefit-cards";
 import { CategoryBoard } from "@/components/category-board";
 import { DemoInterest } from "@/components/demo-interest";
 import { EquipmentSearch } from "@/components/equipment-search";
 import { LeadForm } from "@/components/lead-form";
 import { CookieSettingsButton } from "@/components/cookie-consent";
-import { Logo } from "@/components/logo";
+import { SiteHeader } from "@/components/site-header";
 import { legal } from "@/lib/legal";
 import { contactEmail, copy, photos, siteUrl, type Locale } from "@/lib/content";
 
@@ -37,45 +36,17 @@ export function Landing({ locale }: { locale: Locale }) {
         {t.skip}
       </a>
 
-      <header className="sticky top-0 z-20 border-b border-line bg-paper">
-        <div className="mx-auto flex max-w-[1280px] items-center gap-4 px-6 py-3 md:px-12 lg:px-16">
-          <Logo href={homeHref} locale={locale} />
-          <nav className="ml-auto hidden items-center gap-5 lg:flex" aria-label={t.categoriesTitle}>
-            <a href="#rent" className="text-[13px] font-bold tracking-[0.08em] uppercase">
-              {t.navRent}
-            </a>
-            <a href="#buy" className="text-[13px] font-bold tracking-[0.08em] uppercase">
-              {t.navBuy}
-            </a>
-            <a href="#categories" className="text-[13px] font-bold tracking-[0.08em] uppercase">
-              {t.navCategories}
-            </a>
-          </nav>
-          <nav aria-label={t.langLabel} className="ml-auto flex items-center gap-3 text-sm font-bold lg:ml-4">
-            <Link
-              href="/"
-              hrefLang="cs"
-              lang="cs"
-              aria-current={locale === "cs" ? "page" : undefined}
-              className={locale === "cs" ? "underline decoration-orange decoration-2 underline-offset-4" : "text-muted"}
-            >
-              CZ
-            </Link>
-            <Link
-              href="/en"
-              hrefLang="en"
-              lang="en"
-              aria-current={locale === "en" ? "page" : undefined}
-              className={locale === "en" ? "underline decoration-orange decoration-2 underline-offset-4" : "text-muted"}
-            >
-              EN
-            </Link>
-          </nav>
-          <a href="#list" className={`${btn} bg-orange text-ink hover:bg-[#e85a00]`}>
-            {t.navList}
-          </a>
-        </div>
-      </header>
+      <SiteHeader
+        locale={locale}
+        copy={t}
+        homeHref={homeHref}
+        rentHref="#rent"
+        buyHref="#buy"
+        categoriesHref="#categories"
+        listHref="#list"
+        csHref="/"
+        enHref="/en"
+      />
 
       <section id="obsah" className="grid lg:grid-cols-[1.15fr_0.85fr]">
         <div className="px-4 pt-8 pb-14 md:px-8 md:pt-10 md:pb-16 lg:pt-10 lg:pb-16">

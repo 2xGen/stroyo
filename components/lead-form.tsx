@@ -22,6 +22,8 @@ export function LeadForm({
   haveLocationLabel,
   locationLabel,
   locationDefault = "",
+  queryDefault = "",
+  whenLabel,
   showTiming = false,
   showOffer = false,
   submit,
@@ -42,6 +44,8 @@ export function LeadForm({
   haveLocationLabel?: string;
   locationLabel?: string;
   locationDefault?: string;
+  queryDefault?: string;
+  whenLabel?: string;
   showTiming?: boolean;
   showOffer?: boolean;
   submit: string;
@@ -113,6 +117,7 @@ export function LeadForm({
             required
             maxLength={120}
             placeholder={equipmentPlaceholder}
+            defaultValue={queryDefault}
             disabled={pending}
             className="mt-2 h-12 w-full border border-line bg-white px-3 text-base text-ink disabled:opacity-60"
           />
@@ -134,7 +139,7 @@ export function LeadForm({
 
       {showTiming ? (
         <fieldset className="mt-4">
-          <legend className="text-sm font-bold">{copy.whenLabel}</legend>
+          <legend className="text-sm font-bold">{whenLabel ?? copy.whenLabel}</legend>
           <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             {copy.timings.map((item) => (
               <button key={item.id} type="button" aria-pressed={timing === item.id} onClick={() => setTiming(item.id)} className={choice(timing === item.id)}>
