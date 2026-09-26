@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CookieSettingsButton } from "@/components/cookie-consent";
 import { Logo } from "@/components/logo";
-import { contactEmail, type Locale } from "@/lib/content";
+import { contactEmail, ogImage, type Locale } from "@/lib/content";
 import { legal } from "@/lib/legal";
 
 export function privacyMetadata(locale: Locale): Metadata {
@@ -14,7 +14,8 @@ export function privacyMetadata(locale: Locale): Metadata {
       canonical: t.privacyHref,
       languages: { cs: "/ochrana-osobnich-udaju", en: "/en/privacy", "x-default": "/ochrana-osobnich-udaju" },
     },
-    openGraph: { title: t.privacyTitle, description: t.privacyMeta, url: t.privacyHref },
+    openGraph: { title: t.privacyTitle, description: t.privacyMeta, url: t.privacyHref, images: [ogImage] },
+    twitter: { card: "summary_large_image", title: t.privacyTitle, description: t.privacyMeta, images: [ogImage] },
   };
 }
 

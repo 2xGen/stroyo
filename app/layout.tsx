@@ -3,6 +3,7 @@ import { Archivo } from "next/font/google";
 import { headers } from "next/headers";
 import { Analytics } from "@vercel/analytics/next";
 import { CookieConsent } from "@/components/cookie-consent";
+import { ogImage } from "@/lib/content";
 import "./globals.css";
 
 const sans = Archivo({
@@ -21,6 +22,14 @@ export const metadata: Metadata = {
   },
   description:
     "České tržiště pro pronájem a prodej nářadí, zahradní techniky a stavebních strojů.",
+  openGraph: {
+    siteName: "Stroyo",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [ogImage],
+  },
 };
 
 export const viewport: Viewport = {

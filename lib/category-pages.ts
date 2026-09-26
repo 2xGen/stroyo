@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { photos, siteUrl, type CategoryId, type Locale } from "@/lib/content";
+import { ogImage, photos, siteUrl, type CategoryId, type Locale } from "@/lib/content";
 
 export type CategorySlug = {
   id: CategoryId;
@@ -661,6 +661,13 @@ export function categoryMetadata(locale: Locale, page: CategoryPageData): Metada
       description: copy.description,
       url: `${siteUrl}${path}`,
       locale: locale === "en" ? "en_GB" : "cs_CZ",
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: copy.title,
+      description: copy.description,
+      images: [ogImage],
     },
   };
 }

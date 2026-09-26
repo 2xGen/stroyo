@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 
 export const siteUrl = "https://stroyo.cz";
 export const contactEmail = "hello@stroyo.cz";
+export const ogImage = {
+  url: "https://ieaogqcdasyhxlkuzkyq.supabase.co/storage/v1/object/public/website%20images/stroyo%20og%20image.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Stroyo.cz — Pronajměte. Kupte. Nabídněte.",
+} as const;
 
 export type Locale = "cs" | "en";
 
@@ -462,11 +468,13 @@ export function pageMetadata(locale: Locale): Metadata {
       locale: locale === "en" ? "en_US" : "cs_CZ",
       alternateLocale: locale === "en" ? ["cs_CZ"] : ["en_US"],
       type: "website",
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: t.metaTitle,
       description: t.metaDescription,
+      images: [ogImage],
     },
   };
 }
